@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // AsrClient is the client API for Asr service.
@@ -55,7 +56,7 @@ func (c *asrClient) LongRunningRecognize(ctx context.Context, in *LongRunningRec
 }
 
 func (c *asrClient) StreamingRecognize(ctx context.Context, opts ...grpc.CallOption) (Asr_StreamingRecognizeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Asr_serviceDesc.Streams[0], "/sogou.speech.asr.v1.asr/StreamingRecognize", opts...)
+	stream, err := c.cc.NewStream(ctx, &Asr_ServiceDesc.Streams[0], "/sogou.speech.asr.v1.asr/StreamingRecognize", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +124,7 @@ type UnsafeAsrServer interface {
 }
 
 func RegisterAsrServer(s grpc.ServiceRegistrar, srv AsrServer) {
-	s.RegisterService(&_Asr_serviceDesc, srv)
+	s.RegisterService(&Asr_ServiceDesc, srv)
 }
 
 func _Asr_Recognize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -188,7 +189,10 @@ func (x *asrStreamingRecognizeServer) Recv() (*StreamingRecognizeRequest, error)
 	return m, nil
 }
 
-var _Asr_serviceDesc = grpc.ServiceDesc{
+// Asr_ServiceDesc is the grpc.ServiceDesc for Asr service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Asr_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "sogou.speech.asr.v1.asr",
 	HandlerType: (*AsrServer)(nil),
 	Methods: []grpc.MethodDesc{

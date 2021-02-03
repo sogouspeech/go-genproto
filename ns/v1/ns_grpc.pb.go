@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // NsClient is the client API for Ns service.
@@ -29,7 +30,7 @@ func NewNsClient(cc grpc.ClientConnInterface) NsClient {
 }
 
 func (c *nsClient) StreamingSuppress(ctx context.Context, opts ...grpc.CallOption) (Ns_StreamingSuppressClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Ns_serviceDesc.Streams[0], "/sogou.speech.ns.v1.ns/StreamingSuppress", opts...)
+	stream, err := c.cc.NewStream(ctx, &Ns_ServiceDesc.Streams[0], "/sogou.speech.ns.v1.ns/StreamingSuppress", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +85,7 @@ type UnsafeNsServer interface {
 }
 
 func RegisterNsServer(s grpc.ServiceRegistrar, srv NsServer) {
-	s.RegisterService(&_Ns_serviceDesc, srv)
+	s.RegisterService(&Ns_ServiceDesc, srv)
 }
 
 func _Ns_StreamingSuppress_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -113,7 +114,10 @@ func (x *nsStreamingSuppressServer) Recv() (*StreamingSuppressRequest, error) {
 	return m, nil
 }
 
-var _Ns_serviceDesc = grpc.ServiceDesc{
+// Ns_ServiceDesc is the grpc.ServiceDesc for Ns service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Ns_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "sogou.speech.ns.v1.ns",
 	HandlerType: (*NsServer)(nil),
 	Methods:     []grpc.MethodDesc{},

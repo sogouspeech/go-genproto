@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // MtClient is the client API for Mt service.
@@ -62,7 +63,7 @@ type UnsafeMtServer interface {
 }
 
 func RegisterMtServer(s grpc.ServiceRegistrar, srv MtServer) {
-	s.RegisterService(&_Mt_serviceDesc, srv)
+	s.RegisterService(&Mt_ServiceDesc, srv)
 }
 
 func _Mt_TranslateText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -83,7 +84,10 @@ func _Mt_TranslateText_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Mt_serviceDesc = grpc.ServiceDesc{
+// Mt_ServiceDesc is the grpc.ServiceDesc for Mt service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mt_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "sogou.speech.mt.v1.mt",
 	HandlerType: (*MtServer)(nil),
 	Methods: []grpc.MethodDesc{

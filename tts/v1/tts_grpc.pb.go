@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // TtsClient is the client API for Tts service.
@@ -42,7 +43,7 @@ func (c *ttsClient) Synthesize(ctx context.Context, in *SynthesizeRequest, opts 
 }
 
 func (c *ttsClient) StreamingSynthesize(ctx context.Context, in *SynthesizeRequest, opts ...grpc.CallOption) (Tts_StreamingSynthesizeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Tts_serviceDesc.Streams[0], "/sogou.speech.tts.v1.tts/StreamingSynthesize", opts...)
+	stream, err := c.cc.NewStream(ctx, &Tts_ServiceDesc.Streams[0], "/sogou.speech.tts.v1.tts/StreamingSynthesize", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +106,7 @@ type UnsafeTtsServer interface {
 }
 
 func RegisterTtsServer(s grpc.ServiceRegistrar, srv TtsServer) {
-	s.RegisterService(&_Tts_serviceDesc, srv)
+	s.RegisterService(&Tts_ServiceDesc, srv)
 }
 
 func _Tts_Synthesize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -147,7 +148,10 @@ func (x *ttsStreamingSynthesizeServer) Send(m *SynthesizeResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _Tts_serviceDesc = grpc.ServiceDesc{
+// Tts_ServiceDesc is the grpc.ServiceDesc for Tts service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tts_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "sogou.speech.tts.v1.tts",
 	HandlerType: (*TtsServer)(nil),
 	Methods: []grpc.MethodDesc{
